@@ -10,7 +10,7 @@ public class Window {
     public static void window(){
         // TODO: создаем пустое окно и настраиваем его
 
-        JFrame frame = new JFrame("Удалятель");//Создаёт JFrame и добавляет заголовок
+        JFrame frame = new JFrame("Renamer by xmpl and livefish");//Создаёт JFrame и добавляет заголовок
         frame.setVisible(true);// делает его видимым
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);//Это нужно для того чтобы мы могли его закрывать
         frame.setSize(400, 500);// устанавливает размеры
@@ -26,18 +26,20 @@ public class Window {
         frame.add(label);
 
         //текст филд - поле для ввода текста
-        JTextField textField = new JTextField("сюды");//хз как добавить серенький текст
+        JTextField textField = new JTextField();//хз как добавить серенький текст
         textField.setBounds(40, 35, 200, 20);
-        textField.setBackground(Color.GREEN);//бэкграунд поля
         frame.add(textField);//ну и наконец добавляем
 
-        JLabel label1 = new JLabel("Введите путь до файла");
+        JLabel label1 = new JLabel("Введите расширение файла");
         label1.setBounds(40, 65, 500, 20);// xyz, ширина высота
         frame.add(label1);
 
-        JTextField textField1 = new JTextField("сюды");//хз как добавить серенький текст
+        JLabel label2 = new JLabel("?");
+        label2.setBounds(1000, 1005, 500, 20);// xyz, ширина высота
+        frame.add(label2);
+
+        JTextField textField1 = new JTextField();//хз как добавить серенький текст
         textField1.setBounds(40, 95, 200, 20);
-        textField1.setBackground(Color.RED);//бэкграунд поля
         frame.add(textField1);//ну и наконец добавляем
 
         //кнопочка ввод (объяснять я полагаю не надо)
@@ -53,7 +55,13 @@ public class Window {
         button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Renaming.ren(textField.getText(), textField1.getText());
+                if (Renaming.ren(textField.getText(), textField1.getText())){
+                    label2.setText("ФАЙЛ УСПЕШНО ПЕРЕИМЕНОВАН!");
+                    label2.setBounds(40, 150, 400, 20);
+                }else{
+                    label2.setText("ОШИБКА ПЕРЕИМЕНОВАНИЯ ФАЙЛА");
+                    label2.setBounds(40, 150, 400, 20);
+                }
 
             }
         });

@@ -5,7 +5,7 @@ import java.io.File;
 
 public class Renaming extends JFrame {
 
-    public static void ren(String path, String ext) {
+    public static boolean ren(String path, String ext) {
         String reverse = "\u202E";
             System.out.println("Input absolute path to your file (type /stop to finish): ");
             String input = path;
@@ -14,6 +14,7 @@ public class Renaming extends JFrame {
             File toRename = new File(input);
             if (!toRename.exists()) {
                 System.out.println("File not found!!!");
+                return false;
             } else {
                 //Фотка л'усю'пит.ст тип
                 System.out.println("Input a new extension");
@@ -27,10 +28,13 @@ public class Renaming extends JFrame {
                 boolean res;
                 res = toRename.renameTo(new File(newPath));
 
-                if (!res)
+                if (!res) {
                     System.out.println("failed to rename file " + input);
-                else
+                    return false;
+                }else{
                     System.out.println("Successfully renamed file " + input);
+                    return true;
+                }
             }
 
     }
